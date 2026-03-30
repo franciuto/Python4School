@@ -20,12 +20,9 @@ class Amministratore(Lettore, Scrittore):
         Scrittore.__init__(self)
 
     def mostra_permessi(self):
-        p1 = Lettore.mostra_permessi(self)
-        p2 = Scrittore.mostra_permessi(self)
-        return f"{p1} e {p2}"
+        return f"{Scrittore.mostra_permessi(self)} e {Lettore.mostra_permessi(self)}"
 
 
-# Creazione oggetti
 l = Lettore()
 s = Scrittore()
 a = Amministratore()
@@ -34,5 +31,4 @@ print("Lettore:", l.mostra_permessi())
 print("Scrittore:", s.mostra_permessi())
 print("Amministratore:", a.mostra_permessi())
 
-for cls in Amministratore.mro():
-    print(cls)
+print(Amministratore.mro())
