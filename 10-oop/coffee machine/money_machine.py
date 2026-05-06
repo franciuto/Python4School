@@ -1,3 +1,4 @@
+
 class Cassa:
     def __init__(self):
         self.incasso = 0.0

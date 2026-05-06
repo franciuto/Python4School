@@ -1,0 +1,151 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0" pages="2">
+  <diagram id="uml-classes" name="UML Class Diagram">
+    <mxGraphModel dx="1072" dy="860" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="class_main" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=6;" value="&lt;b&gt;&amp;lt;&amp;lt;script&amp;gt;&amp;gt;&lt;/b&gt;&#xa;main.py&#xa;---&#xa;+ loop principale&#xa;+ input utente&#xa;+ orchestrazione oggetti" vertex="1">
+          <mxGeometry height="170" width="240" x="40" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="class_bevanda" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=6;" value="&lt;b&gt;Bevanda&lt;/b&gt;&#xa;---&#xa;+ nome: str&#xa;+ acqua: int&#xa;+ latte: int&#xa;+ caffe: int&#xa;+ prezzo: float&#xa;---&#xa;+ __init__(nome, acqua, latte, caffe, prezzo)" vertex="1">
+          <mxGeometry height="210" width="320" x="450" y="480" as="geometry" />
+        </mxCell>
+        <mxCell id="class_catalogo" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=6;" value="&lt;b&gt;Catalogo&lt;/b&gt;&#xa;---&#xa;+ bevande: list[Bevanda]&#xa;---&#xa;+ __init__()&#xa;+ lista_nomi(): str&#xa;+ cerca(nome): Bevanda | None" vertex="1">
+          <mxGeometry height="180" width="310" x="780" y="35" as="geometry" />
+        </mxCell>
+        <mxCell id="class_macchinetta" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=6;" value="&lt;b&gt;Macchinetta&lt;/b&gt;&#xa;---&#xa;+ scorte: dict[str, int]&#xa;---&#xa;+ __init__()&#xa;+ stato()&#xa;+ scorte_sufficienti(bevanda): bool&#xa;+ prepara(bevanda)" vertex="1">
+          <mxGeometry height="190" width="320" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="class_cassa" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=6;" value="&lt;b&gt;Cassa&lt;/b&gt;&#xa;---&#xa;+ incasso: float&#xa;---&#xa;+ __init__()&#xa;+ stato()&#xa;+ inserisci_soldi(): float&#xa;+ paga(prezzo): bool" vertex="1">
+          <mxGeometry height="180" width="310" x="360" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="e_main_catalogo" edge="1" parent="1" source="class_main" style="dashed=1;endArrow=open;html=1;" target="class_catalogo" value="usa">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_main_macchinetta" edge="1" parent="1" source="class_main" style="dashed=1;endArrow=open;html=1;" target="class_macchinetta" value="usa">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_main_cassa" edge="1" parent="1" source="class_main" style="dashed=1;endArrow=open;html=1;" target="class_cassa" value="usa">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_catalogo_bevanda" edge="1" parent="1" source="class_catalogo" style="startArrow=diamondThin;startFill=1;endArrow=none;html=1;" target="class_bevanda" value="contiene">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_macchinetta_bevanda" edge="1" parent="1" source="class_macchinetta" style="dashed=1;endArrow=open;html=1;" target="class_bevanda" value="usa">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="uml-activity" name="UML Activity Diagram">
+    <mxGraphModel dx="825" dy="662" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="a_start" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#000000;strokeColor=#000000;" value="" vertex="1">
+          <mxGeometry height="60" width="60" x="40" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="a_input" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Richiedi scelta&#xa;(menu/lista_nomi)" vertex="1">
+          <mxGeometry height="60" width="160" x="280" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="a_dec_spegni" parent="1" style="rhombus;whiteSpace=wrap;html=1;" value="scelta == &quot;spegni&quot;?" vertex="1">
+          <mxGeometry height="80" width="160" x="560" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="a_stop_flag" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="attivo = False" vertex="1">
+          <mxGeometry height="60" width="160" x="840" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="a_end" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#000000;strokeColor=#000000;" value="" vertex="1">
+          <mxGeometry height="60" width="60" x="1170" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="a_cerca" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="bevanda = catalogo.cerca(scelta)" vertex="1">
+          <mxGeometry height="60" width="200" x="260" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="a_dec_stato" parent="1" style="rhombus;whiteSpace=wrap;html=1;" value="scelta == &quot;stato&quot;?" vertex="1">
+          <mxGeometry height="80" width="160" x="560" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="a_show_stato" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="macchinetta.stato()&#xa;cassa.stato()" vertex="1">
+          <mxGeometry height="60" width="180" x="830" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="a_dec_bevanda" parent="1" style="rhombus;whiteSpace=wrap;html=1;" value="bevanda trovata?" vertex="1">
+          <mxGeometry height="80" width="160" x="280" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="a_dec_scorte" parent="1" style="rhombus;whiteSpace=wrap;html=1;" value="scorte sufficienti?" vertex="1">
+          <mxGeometry height="80" width="160" x="560" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="a_dec_paga" parent="1" style="rhombus;whiteSpace=wrap;html=1;" value="pagamento riuscito?" vertex="1">
+          <mxGeometry height="80" width="160" x="840" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="a_prepara" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="macchinetta.prepara(bevanda)" vertex="1">
+          <mxGeometry height="60" width="220" x="1090" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="a_loop_merge" parent="1" style="rhombus;whiteSpace=wrap;html=1;" value="continua loop" vertex="1">
+          <mxGeometry height="80" width="160" x="560" y="510" as="geometry" />
+        </mxCell>
+        <mxCell id="ae1" edge="1" parent="1" source="a_start" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;" target="a_input" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ae2" edge="1" parent="1" source="a_input" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;" target="a_dec_spegni" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ae3" edge="1" parent="1" source="a_dec_spegni" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;" target="a_stop_flag" value="Sì">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ae4" edge="1" parent="1" source="a_stop_flag" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;" target="a_end" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ae5" edge="1" parent="1" source="a_dec_spegni" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;" target="a_dec_stato" value="No">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ae6" edge="1" parent="1" source="a_dec_stato" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;" target="a_show_stato" value="Sì">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ae7" edge="1" parent="1" source="a_dec_stato" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;" target="a_cerca" value="No">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ae8" edge="1" parent="1" source="a_cerca" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;" target="a_dec_bevanda" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ae9" edge="1" parent="1" source="a_dec_bevanda" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;entryX=0.296;entryY=0.162;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="a_loop_merge" value="No">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="360" y="450" />
+              <mxPoint x="600" y="450" />
+              <mxPoint x="600" y="523" />
+            </Array>
+            <mxPoint x="320" y="430" as="sourcePoint" />
+            <mxPoint x="600" y="510" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ae10" edge="1" parent="1" source="a_dec_bevanda" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;" target="a_dec_scorte" value="Sì">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ae11" edge="1" parent="1" source="a_dec_scorte" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;" target="a_loop_merge" value="No">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ae12" edge="1" parent="1" source="a_dec_scorte" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;" target="a_dec_paga" value="Sì">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ae13" edge="1" parent="1" source="a_dec_paga" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="a_loop_merge" value="No">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="940.0000000000002" y="464" as="sourcePoint" />
+            <mxPoint x="740" y="584" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ae14" edge="1" parent="1" source="a_dec_paga" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;" target="a_prepara" value="Sì">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ae17" edge="1" parent="1" source="a_loop_merge" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="220" y="550" />
+              <mxPoint x="220" y="90" />
+              <mxPoint x="280" y="90" />
+            </Array>
+            <mxPoint x="480.0000000000002" y="550" as="sourcePoint" />
+            <mxPoint x="280" y="90" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
