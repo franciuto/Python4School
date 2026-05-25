@@ -1,26 +1,53 @@
-from turtle import Turtle, Screen
-import time
+from turtle import Turtle
 
-class Snake():
+_STEP = 20
+_STARTS = [(0, 0), (-20, 0), (-40, 0)]
+_UP = 90
+_DOWN = 270
+_LEFT = 180
+_RIGHT = 0
+
+
+class Kappa:
     def __init__(self):
-        self.segments = self.initializeSegments()
-    
-    def initializeSegments(self):
-        positions = [(0,0), (-20,0), (-40,0)]
-        segments = []
-        
-        for position in positions:
-            turtle = Turtle("square")
-            turtle.color("white")
-            turtle.penup()
-            turtle.goto(position)
-            segments.append(turtle)
-        return segments
+        self.chain = []
+        self._seed()
+        self.tip = self.chain[0]
 
-    def move(self):    
-        for seg_num in range(len(self.segments) -1, 0, -1):
-            new_x = self.segments[seg_num - 1].xcor()
-            new_y = self.segments[seg_num - 1].ycor()
-            self.segments[seg_num].goto(new_x, new_y)
-        
-        self.segments[0].forward(20)
+    def _seed(self):
+        for spot in _STARTS:
+            self._add(spot)
+
+    def _add(self, pos):
+        unit = Turtle("square")
+        unit.color("white")
+        unit.penup()
+        unit.goto(pos)
+        self.chain.append(unit)
+
+    def stretch(self):
+        self._add(self.chain[-1].position())
+
+    def drift(self):
+        for idx in range(len(self.chain) - 1, 0, -1):
+            nx = self.chain[idx - 1].xcor()
+            ny = self.chain[idx - 1].ycor()
+            self.chain[idx].goto(nx, ny)
+
+        self.tip.forward(_STEP)
+
+    def turn_n(self):
+        if self.tip.heading() != _DOWN:
+            self.tip.setheading(_UP)
+
+    def turn_s(self):
+        if self.tip.heading() != _UP:
+            self.tip.setheading(_DOWN)
+
+    def turn_w(self):
+        if self.tip.heading() != _RIGHT:
+            self.tip.setheading(_LEFT)
+
+    def turn_e(self):
+        if self.tip.heading() != _LEFT:
+            self.tip.setheading(_RIGHT)
